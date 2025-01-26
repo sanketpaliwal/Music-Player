@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/utility.css">
+    <title>Spotify - Web Player: Music for everyone</title>
+</head>
+
+<body>
+    <div class="container flex bg-black">
+        <div class="left">
+            <div class="close">
+                <img width="30" class="invert" src="img/close.svg" alt="">
+            </div>
+            <div class="home bg-grey rounded m-1 p-1">
+                <div class="logo"><img width="110" class="invert" src="img/logo.svg" alt=""></div>
+                <ul>
+                    <li><img class="invert" src="img/home.svg" alt="home">Home</li>
+                    <li><img class="invert" src="img/search.svg" alt="home">Search</li>
+                </ul>
+            </div>
+
+            <div class="library bg-grey rounded m-1 p-1">
+                <div class="heading">
+                    <img class="invert" src="img/playlist.svg" alt="">
+                    <h2>
+                        Your Library
+                    </h2>
+                </div>
+
+                <div class="songList">
+
+                    <ul>
+                      jijhj
+                    </ul>
+                </div>
+
+                <!-- <div class="footer">
+                    <div><a href="https://www.spotify.com/jp/legal/"><span>Legal</span></a></div>
+                    <div><a href="https://www.spotify.com/jp/privacy/"><span>Privacy Center</span></a></div>
+                    <div><a href="https://www.spotify.com/jp/legal/privacy-policy/"><span>Privacy Policy</span></a>
+                    </div>
+                    <div><a href="https://www.spotify.com/jp/legal/cookies-policy/"><span>Cookies</span></a></div>
+                    <div><a href="https://www.spotify.com/jp/legal/privacy-policy/#s3"><span>About Ads</span></a></div>
+                    <div><a href="https://www.spotify.com/jp/accessibility/"><span>Accessibility</span></a></div>
+                </div> -->
+            </div>
+
+
+        </div>
+        <div class="right bg-grey rounded">
+            <div class="header">
+                <div class="nav">
+                    <div class="hamburgerContainer">
+
+                        <img width="40" class="invert hamburger" src="img/hamburger.svg" alt="">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M15 6L9.70711 11.2929C9.37377 11.6262 9.20711 11.7929 9.20711 12C9.20711 12.2071 9.37377 12.3738 9.70711 12.7071L15 18"
+                                stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M9 18L14.2929 12.7071C14.6262 12.3738 14.7929 12.2071 14.7929 12C14.7929 11.7929 14.6262 11.6262 14.2929 11.2929L9 6"
+                                stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="buttons">
+                    <button class="signupbtn">Sign up</button>
+                    <button class="loginbtn">Log in</button>
+                </div>
+            </div>
+            <div class="spotifyPlaylists">
+                <h1>Spotify Playlists</h1>
+                <div id="cont" class="cardContainer">
+                    
+                      </div>
+                      
+                <div class="playbar">
+                    <div class="seekbar">
+                        <div class="circle">
+
+                        </div>
+                    </div>
+                    <div class="abovebar">
+
+
+                        <div class="songinfo">
+
+                        </div>
+                        <div class="songbuttons">
+                            <img width="35" id="previous" src="img/prevsong.svg" alt="">
+                            <img width="35" id="play" src="img/play.svg" alt="">
+                            <img width="35" id="next" src="img/nextsong.svg" alt="">
+                        </div>
+                        <div class="timevol">
+
+                       
+                        <div class="songtime">
+
+                        </div>
+                        <div class="volume">
+                            <img width="25" src="img/volume.svg" alt="">
+                            <div class="range">
+                                <input type="range" name="volume" id="">
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <script src=".js/script.js"></script> -->
+     <script>
+     console.log('Lets write JavaScript');
+// let currentSong = new Audio();
+let songs;
+let currFolder;
+
+let SongArr=[{
+    "title": "Aashaki",
+    "description": "Romantic Hits",
+    "Image":"download.jpeg",
+    "link":"128-Tum Hi Ho - Aashiqui 2 128 Kbps.mp3",
+    "num":"0"
+   
+},{
+    "title": "Get up",
+    "description": "You can do it!",
+    "Image":"cover.jpg",
+    "link":"Levitating-(PagalSongs.Com.IN).mp3",
+    "num":"1"
+   
+}]
+
+const cardContainer = document.getElementById('cont');
+                  console.log("dksdnsk")
+                    SongArr.forEach(item => {
+                        console.log("dksdnsk")
+                        const cardTemplate = `
+                          <div class="card" id="audio${item.num}">
+                            <img src="SongImages/${item.Image}" alt="${item.title}">
+                            <h3>${item.title}</h3>
+                            <p>${item.description}</p>
+                            <audio id="myAudio${item.num}">
+                            <source src="/SongMusic/${item.link}" type="audio/mpeg">
+                            </audio>
+                          </div>
+                        `;
+                        // Insert the card template into the container
+                        cardContainer.innerHTML =  cardContainer.innerHTML+cardTemplate;
+                    });
+
+function secondsToMinutesSeconds(seconds) {
+    if (isNaN(seconds) || seconds < 0) {
+        return "00:00";
+    }
+
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = Math.floor(seconds % 60);
+
+    const formattedMinutes = String(minutes).padStart(2, '0');
+    const formattedSeconds = String(remainingSeconds).padStart(2, '0');
+
+    return `${formattedMinutes}:${formattedSeconds}`;
+}
+
+// async function getSongs(folder) { 
+    // currFolder = folder;
+    // let a = await fetch(`/${folder}/`)
+    // let response = await a.json();
+    // let div = document.createElement("div")
+    // div.innerHTML = response;
+    // let as = div.getElementsByTagName("a")
+    // songs = []
+    // for (let index = 0; index < as.length; index++) {
+    //     const element = as[index];
+    //     if (element.href.endsWith(".mp3")) {
+    //         songs.push(element.href.split(`/${folder}/`)[1])
+    //     }
+    // }
+    
+ 
+
+
+    // Show all the songs in the playlist
+    // let songUL = document.querySelector(".songList").getElementsByTagName("ul")[0]
+    // songUL.innerHTML = ""
+    // for (const song of songs) {
+    //     songUL.innerHTML = songUL.innerHTML + `<li><img class="invert" width="34" src="img/music.svg" alt="">
+    //                         <div class="info">
+    //                             <div> ${song.replaceAll("%20", " ")}</div>
+                             
+    //                             <div>Harry</div>
+    //                         </div>
+    //                         <div class="playnow">
+    //                             <span>Play Now</span>
+    //                             <img class="invert" src="img/play.svg" alt="">
+    //                         </div> </li>`;
+    // }
+
+    // Attach an event listener to each song
+    // Array.from(document.querySelector(".songList").getElementsByTagName("li")).forEach(e => {
+    //     e.addEventListener("click", element => {
+    //         playMusic(e.querySelector(".info").firstElementChild.innerHTML.trim())
+
+    //     })
+    // })
+
+//     return songs
+// }
+
+// const playMusic = (track, pause = false) => {
+//     audio.src = `/${currFolder}/` + track
+//     if (!pause) {
+//         audio.play()
+//         play.src = "img/pause.svg"
+//     }
+//     document.querySelector(".songinfo").innerHTML = decodeURI(track)
+//     document.querySelector(".songtime").innerHTML = "00:00 / 00:00"
+
+
+// }
+
+// async function displayAlbums() {
+//     console.log("displaying albums")
+//     let a = await fetch(`/songs/cs/info.json`)
+//     let response = await a.text();
+//     let div = document.createElement("div")
+//     div.innerHTML = response;
+//     let anchors = div.getElementsByTagName("a")
+//     let cardContainer = document.querySelector(".cardContainer")
+//     let array = Array.from(anchors)
+//     for (let index = 0; index < array.length; index++) {
+//         const e = array[index]; 
+//         if (e.href.includes("/songs") && !e.href.includes(".htaccess")) {
+//             let folder = e.href.split("/").slice(-2)[0]
+//             // Get the metadata of the folder
+//             let a = await fetch(`/songs/${folder}/info.json`)
+//             let response = await a.json(); 
+//             cardContainer.innerHTML = cardContainer.innerHTML + ` <div data-folder="${folder}" class="card">
+//             <div class="play">
+//                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+//                     xmlns="http://www.w3.org/2000/svg">
+//                     <path d="M5 20V4L19 12L5 20Z" stroke="#141B34" fill="#000" stroke-width="1.5"
+//                         stroke-linejoin="round" />
+//                 </svg>
+//             </div>
+
+//             <img src="/songs/${folder}/cover.jpg" alt="">
+//             <h2>${response.title}</h2>
+//             <p>${response.description}</p>
+//         </div>`
+//         }
+//     }
+
+//     // Load the playlist whenever card is clicked
+    
+// }
+ var audio=document.getElementById("myAudio0");
+
+async function main() {
+
+   
+
+    // Array.from(document.getElementsByClassName("card")).forEach(e => { 
+    //     e.addEventListener("click", async item => {
+    //         // console.log("Fetching Songs")
+    //         // const audioId = document.getElementById(`audio${e.num}"`)
+          
+          
+
+    // // Pause all other audio elements first (in case any are playing)
+    // // document.querySelectorAll('audio').forEach(audio => {
+    // //   audio.pause();
+    // //   audio.currentTime = 0; // Reset playback position
+    // // });
+
+    // // Play the associated audio
+    // // audioId.play();
+
+    //     })
+    // })
+
+let selectedAudio=new Audio();
+// let audio=null;
+// selectedAudio=null; 
+    const cards = document.getElementsByClassName('card');
+
+Array.from(cards).forEach((card, index) => {
+  card.addEventListener('click', () => {
+    
+    // Use arrow function to play the audio when the card is clicked
+    // audio.pause();
+    // var selectedAudio = new Audio(`SongMusic/${SongArr[index].link}`);
+    selectedAudio=document.getElementById(`myAudio${index}`);
+    if (audio) {
+      audio.pause();
+      audio.currentTime = 0; // Reset playback position
+    }
+
+    // Play or pause the selected audio
+    if (selectedAudio.paused) {
+      selectedAudio.play();
+    } else {
+      selectedAudio.pause();
+      selectedAudio.currentTime = 0;
+    }
+    selectedAudio.addEventListener("timeupdate", () => {
+        console.log(audio.id)
+        document.querySelector(".songtime").innerHTML = `${secondsToMinutesSeconds(selectedAudio.currentTime)} / ${secondsToMinutesSeconds(selectedAudio.duration)}`
+        document.querySelector(".circle").style.left = (selectedAudio.currentTime / selectedAudio.duration) * 100 + "%";
+    })
+    // Update the currentAudio variable to the selected audio
+    // audio = selectedAudio;
+    audio=document.getElementById(`myAudio${index}`);
+    // console.log(`myAudio${index}`);
+     // audio=document.getElementById(`audio${SongArr[index].num}`);
+
+    previous.addEventListener("click", () => {
+        // audio.pause() 
+        if((SongArr.indexOf(`myAudio${index-1}`)) >= 0) {
+           document.getElementById(`myAudio${index-1}`).play()
+        }
+        
+    })
+
+    next.addEventListener("click", () => {
+        // audio.pause() 
+        if((SongArr.indexOf(`myAudio${index+1}`)) < SongArr.size()) {
+           document.getElementById(`myAudio${index+1}`).play()
+        }
+        
+    })
+    
+  });
+  
+});
+
+
+    document.title="ksdnskld";
+//   audio = curraudio;
+    // audio.play();
+    // Get the list of all the songs
+    // await getSongs("songs/ncs/")
+    // playMusic(songs[0], true)
+   
+
+    // Display all the albums on the page
+    // await displayAlbums()
+
+
+    // Attach an event listener to play, next and previous
+    play.addEventListener("click", () => {
+        if (audio.paused) {
+            audio.play()
+            play.src = "img/pause.svg"
+        }
+        else {
+            audio.pause()
+            play.src = "img/play.svg"
+        }
+    })
+
+    // Listen for timeupdate event
+    // audio.addEventListener("timeupdate", () => {
+    //     console.log(audio.id)
+    //     document.querySelector(".songtime").innerHTML = `${secondsToMinutesSeconds(audio.currentTime)} / ${secondsToMinutesSeconds(audio.duration)}`
+    //     document.querySelector(".circle").style.left = (audio.currentTime / audio.duration) * 100 + "%";
+    // })
+
+    // Add an event listener to seekbar
+    document.querySelector(".seekbar").addEventListener("click", e => {
+        let percent = (e.offsetX / e.target.getBoundingClientRect().width) * 100;
+        document.querySelector(".circle").style.left = percent + "%";
+        audio.currentTime = ((audio.duration) * percent) / 100
+    })
+
+    // Add an event listener for hamburger
+    // document.querySelector(".hamburger").addEventListener("click", () => {
+    //     document.querySelector(".left").style.left = "0"
+    // })
+
+    // // Add an event listener for close button
+    // document.querySelector(".close").addEventListener("click", () => {
+    //     document.querySelector(".left").style.left = "-120%"
+    // })
+
+    // Add an event listener to previous
+    // previous.addEventListener("click", () => {
+    //     // audio.pause()
+    //     audio.pause()
+    //     // console.log("Previous clicked")
+    //     // let index = songs.indexOf(currentSong.src.split("/").slice(-1)[0])
+    //     let index = SongArr.indexOf(`myAudio${index}`)
+    //     console.log(index)
+    //     // if ((index - 1) >= 0) {
+    //     //     playMusic(SongArr[index - 1])
+    //     // }
+    // })
+
+    // Add an event listener to next
+    // next.addEventListener("click", () => {
+    //     currentSong.pause()
+    //     console.log("Next clicked")
+
+    //     let index = songs.indexOf(currentSong.src.split("/").slice(-1)[0])
+    //     if ((index + 1) < songs.length) {
+    //         playMusic(songs[index + 1])
+    //     }
+    // })
+
+    // Add an event to volume
+    document.querySelector(".range").getElementsByTagName("input")[0].addEventListener("change", (e) => {
+        console.log("Setting volume to", e.target.value, "/ 100")
+        audio.volume = parseInt(e.target.value) / 100
+        if (audio.volume >0){
+            document.querySelector(".volume>img").src = document.querySelector(".volume>img").src.replace("mute.svg", "volume.svg")
+        }
+    })
+
+    // Add event listener to mute the track
+    document.querySelector(".volume>img").addEventListener("click", e=>{ 
+        if(e.target.src.includes("volume.svg")){
+            e.target.src = e.target.src.replace("volume.svg", "mute.svg")
+            audio .volume = 0;
+            document.querySelector(".range").getElementsByTagName("input")[0].value = 0;
+        }
+        else{
+            e.target.src = e.target.src.replace("mute.svg", "volume.svg")
+            audio.volume = .10;
+            document.querySelector(".range").getElementsByTagName("input")[0].value = 10;
+        }
+
+    })
+
+}
+
+main()    
+     </script>    
+</body>
+</html>
